@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel-Light_Bulid</title>
+
+<canvas id="lampadacanvas"></canvas>
+
+    <style>
+        :root{
+        --pao:#5245df;
+     --oiivan:#2cc6c3;
+     --jackjack:#806d00a9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+       img {
+        width: 150px;
+        height: auto;
+        mix-blend-mode: multiply;
+       }
+
+       .lamp {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       }
+
+       canvas {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+       }
+
+        body {
+            background: var(--oiivan);
+            background-image: linear-gradient(to top,
+                    var(--pao), var(--jackjack));
+            background-attachment: fixed;
+            
+        }
+
+        header,
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+            
+        }
+
+        button {
+            width: 80px;
+            background-color: #21c63de4;
+            padding: 12px 24px;
+            border: none;
+           border-radius: 8px 8px;
+           cursor: pointer;
+           font-size: 14px;
+          font-weight: 600;
+          text-transform:uppercase;
+            box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.2);
+         transition:linear;
+         font-family:'Courier New', Courier, monospace;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Luz Depressão</h1>
+    </header>
+    <section>
+        <div>
+            <img src="./assets/img/lamp_off.jpeg" 
+            alt="Lâmpada Off" id='lamp'>
+        </div>
+
+        <div>
+            <button id='turnOn'>ON</button>
+            <button id='turnOff'>OFF</button>
+            
+        </div>
+    </section>
+</body>
+
+<script>
+
+    const turnOn = document.getElementById('turnOn');
+    const turnOff = document.getElementById('turnOff');
+    const lamp = document.getElementById('lamp');
+
+    function isLampBroken() {
+        return lamp.src.indexOf('quebrada') > -1;
+    }
+
+    // erro de digitação
+    function lampOn() {
+        if (!isLampBroken()) {
+            lamp.src = './assets/img/lamp_on.jpeg';
+        }
+    }
+
+    function lampOff() {
+        if (!isLampBroken()) {
+            lamp.src = './assets/img/lamp_off.jpeg';
+        }
+    }
+
+    function lampBroken() {
+        lamp.src = './assets/img/lamp_broke.jpeg';
+    }
+
+    turnOn.addEventListener('click', lampOn);
+    turnOff.addEventListener('click', lampOff);
+    lamp.addEventListener('mouseover', lampOff);
+    lamp.addEventListener('mouseleave', lampOff);
+    lamp.addEventListener('dblclick', lampBroken);
+
+
+</script>
+
+</html>
